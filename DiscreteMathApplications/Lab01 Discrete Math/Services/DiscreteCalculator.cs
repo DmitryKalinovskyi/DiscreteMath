@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab01_Discrete_Math
+namespace Lab01_Discrete_Math.Services
 {
     public class DiscreteCalculator : IDiscreteCalculator
     {

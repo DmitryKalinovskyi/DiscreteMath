@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab01_Discrete_Math.Services;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -12,7 +13,7 @@ namespace Lab01_Discrete_Math.ViewModels
     public enum SetOperationType
     {
         Union = 0,
-        Intersection = 1,
+        Intersection,
         Difference,
         SymmetricDifference
     }
@@ -30,6 +31,7 @@ namespace Lab01_Discrete_Math.ViewModels
             {
                 _a = value;
                 OnPropertyChanged(nameof(A));
+                OnPropertyChanged(nameof(C));
             }
         }
 
@@ -43,6 +45,7 @@ namespace Lab01_Discrete_Math.ViewModels
             {
                 _b = value;
                 OnPropertyChanged(nameof(B));
+                OnPropertyChanged(nameof(C));
             }
         }
 
@@ -50,26 +53,19 @@ namespace Lab01_Discrete_Math.ViewModels
         {
             get
             {
-                return _c;
-            }
-            set
-            {
-                _c = value;
-                OnPropertyChanged(nameof(C));
-            }
-        }
+                try
+                {
+                    var aSet = _setParser.ParseSet<double>(_a);
+                    var bSet = _setParser.ParseSet<double>(_b);
 
-        public SetOperationType OperationType
-        {
-            get
-            {
-                return _operationType;
-            }
-            set
-            {
-                _operationType = value;
-                UpdateImage();
-                OnPropertyChanged(nameof(OperationType));
+                    return _c = _setParser.SetToString(_setOperations[OperationType](aSet, bSet));
+                }
+                catch (Exception ex)
+                {
+                    Trace.WriteLine($"Error: {ex.Message}");
+                }
+
+                return _c;
             }
         }
 
@@ -89,10 +85,26 @@ namespace Lab01_Discrete_Math.ViewModels
             }
         }
 
+        public SetOperationType OperationType
+        {
+            get
+            {
+                return _operationType;
+            }
+            set
+            {
+                _operationType = value;
+                OnPropertyChanged(nameof(C));
+                UpdateImage();
+                OnPropertyChanged(nameof(OperationType));
+            }
+        }
+
+        private string _a = "";
+        private string _b = "";
+        private string _c = "";
+
         private string _operationTypeImage = "";
-
-        private string _a = "", _b = "", _c = "";
-
 
         private SetOperationType _operationType = SetOperationType.Union;
 
@@ -100,7 +112,6 @@ namespace Lab01_Discrete_Math.ViewModels
         private IDiscreteCalculator _discreteCalculator;
 
         private delegate List<T> SetOperation<T>(List<T> a, List<T> b);
-
         private Dictionary<SetOperationType, SetOperation<double>> _setOperations;
 
         public MainWindowViewModel()
@@ -114,29 +125,6 @@ namespace Lab01_Discrete_Math.ViewModels
                 { SetOperationType.Difference, _discreteCalculator.Difference },
                 { SetOperationType.SymmetricDifference, _discreteCalculator.SymmetricDifference }
             };
-
-            PropertyChanged += (s, args) =>
-            {
-                if (args.PropertyName == nameof(A) || args.PropertyName == nameof(B) || args.PropertyName == nameof(OperationType))
-                {
-                    UpdateC();
-                }
-            };
-        }
-
-        public void UpdateC()
-        {
-            try
-            {
-                var aSet = _setParser.ParseSet<double>(_a);
-                var bSet = _setParser.ParseSet<double>(_b);
-
-                C = _setParser.SetToString(_setOperations[OperationType](aSet, bSet));
-            }
-            catch(Exception ex)
-            {
-                Trace.WriteLine($"Error: {ex.Message}");
-            }
         }
 
         public void UpdateImage()
