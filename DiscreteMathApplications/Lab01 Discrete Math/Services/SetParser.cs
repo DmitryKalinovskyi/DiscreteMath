@@ -53,10 +53,10 @@ namespace Lab01_Discrete_Math.Services
                 return new();
 
             HashSet<object> result = new();
-            foreach (var token in s.Split(','))
+            foreach (var rawToken in s.Split(','))
             {
                 // clear token
-                token.Trim();
+                string token = rawToken.Trim();
 
                 if (string.IsNullOrEmpty(token)) continue;
 

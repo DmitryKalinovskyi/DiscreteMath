@@ -26,6 +26,11 @@
             <!--<ui:TitleBar.Icon>
                 <ui:ImageIcon Source="../Images/" />
             </ui:TitleBar.Icon>-->
+            <ui:TitleBar.Resources>
+                <Style TargetType="ui:TitleBarButton" BasedOn="{StaticResource {x:Type ui:TitleBarButton}}">
+                    <Setter Property="MouseOverButtonsForeground" Value="Black" />
+                </Style>
+            </ui:TitleBar.Resources>
         </ui:TitleBar>
         
 
