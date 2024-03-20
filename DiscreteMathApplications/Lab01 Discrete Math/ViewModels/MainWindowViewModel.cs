@@ -55,10 +55,13 @@ namespace Lab01_Discrete_Math.ViewModels
             {
                 try
                 {
-                    var aSet = _setParser.ParseSet<double>(_a);
-                    var bSet = _setParser.ParseSet<double>(_b);
+                    var aSet = _setParser.ParseSet(_a);
+                    var bSet = _setParser.ParseSet(_b);
 
-                    return _c = _setParser.SetToString(_setOperations[OperationType](aSet, bSet));
+                    var result = _setOperations[OperationType](aSet, bSet); 
+
+
+                    return _c = _setParser.IEnumerableToString(result);
                 }
                 catch (Exception ex)
                 {
@@ -109,21 +112,21 @@ namespace Lab01_Discrete_Math.ViewModels
         private SetOperationType _operationType = SetOperationType.Union;
 
         private SetParser _setParser;
-        private IDiscreteCalculator _discreteCalculator;
+        private ISetOperationService _setOperationService;
 
-        private delegate List<T> SetOperation<T>(List<T> a, List<T> b);
-        private Dictionary<SetOperationType, SetOperation<double>> _setOperations;
+        private delegate HashSet<object> SetOperation(IEnumerable<object> a, IEnumerable<object> b);
+        private Dictionary<SetOperationType, SetOperation> _setOperations;
 
         public MainWindowViewModel()
         {
             _setParser = new SetParser();
-            _discreteCalculator = new DiscreteCalculator();
+            _setOperationService = new SetOperationService();
             _setOperations = new()
             {
-                { SetOperationType.Union, _discreteCalculator.Union },
-                { SetOperationType.Intersection, _discreteCalculator.Intersection },
-                { SetOperationType.Difference, _discreteCalculator.Difference },
-                { SetOperationType.SymmetricDifference, _discreteCalculator.SymmetricDifference }
+                { SetOperationType.Union, _setOperationService.Union },
+                { SetOperationType.Intersection, _setOperationService.Intersection },
+                { SetOperationType.Difference, _setOperationService.Difference },
+                { SetOperationType.SymmetricDifference, _setOperationService.SymmetricDifference }
             };
         }
 

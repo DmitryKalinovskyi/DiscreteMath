@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="WPF-UI" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\Difference.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
