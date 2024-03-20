@@ -9,7 +9,7 @@ namespace Lab01_Discrete_Math.ViewModels
     public enum SetOperationType
     {
         Union = 0,
-        Intersection,
+        Intersection = 1,
         Difference,
         SymmetricDifference
     }
