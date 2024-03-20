@@ -1,12 +1,8 @@
 ﻿using Lab01_Discrete_Math.Services;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab01_Discrete_Math.ViewModels
 {
@@ -18,9 +14,9 @@ namespace Lab01_Discrete_Math.ViewModels
         SymmetricDifference
     }
 
-    public class MainWindowViewModel: NotifyViewModel
+    public class MainWindowViewModel : NotifyViewModel
     {
-        
+
         public string A
         {
             get
@@ -58,7 +54,7 @@ namespace Lab01_Discrete_Math.ViewModels
                     var aSet = _setParser.ParseSet(_a);
                     var bSet = _setParser.ParseSet(_b);
 
-                    var result = _setOperations[OperationType](aSet, bSet); 
+                    var result = _setOperations[OperationType](aSet, bSet);
 
 
                     return _c = _setParser.IEnumerableToString(result);

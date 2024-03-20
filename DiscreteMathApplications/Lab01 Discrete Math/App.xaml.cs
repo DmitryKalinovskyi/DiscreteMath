@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading;
 using System.Windows;
 
 namespace Lab01_Discrete_Math
@@ -22,7 +15,7 @@ namespace Lab01_Discrete_Math
             var culture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             culture.NumberFormat.NumberDecimalSeparator = ".";
 
-            Thread.CurrentThread.CurrentCulture = culture; 
+            Thread.CurrentThread.CurrentCulture = culture;
         }
     }
 }

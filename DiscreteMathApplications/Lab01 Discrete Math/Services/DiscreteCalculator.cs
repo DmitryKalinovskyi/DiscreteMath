@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Lab01_Discrete_Math.Services
 {
@@ -14,7 +10,7 @@ namespace Lab01_Discrete_Math.Services
 
             foreach (T t in a)
             {
-                if(result.Contains(t) == false)
+                if (result.Contains(t) == false)
                 {
                     result.Add(t);
                 }
@@ -26,9 +22,9 @@ namespace Lab01_Discrete_Math.Services
         {
             List<T> result = new();
 
-            foreach(T item in a)
+            foreach (T item in a)
             {
-                if(b.Contains(item))
+                if (b.Contains(item))
                 {
                     result.Add(item);
                 }
@@ -41,9 +37,9 @@ namespace Lab01_Discrete_Math.Services
         {
             List<T> result = new();
 
-            foreach(T item in a)
+            foreach (T item in a)
             {
-                if(b.Contains(item) == false)
+                if (b.Contains(item) == false)
                 {
                     result.Add(item);
                 }
@@ -56,13 +52,13 @@ namespace Lab01_Discrete_Math.Services
         {
             List<T> result = new();
 
-            foreach(T item in a)
+            foreach (T item in a)
             {
                 if (b.Contains(item) == false)
                     result.Add(item);
             }
 
-            foreach(T item in b)
+            foreach (T item in b)
             {
                 if (a.Contains(item) == false)
                     result.Add(item);

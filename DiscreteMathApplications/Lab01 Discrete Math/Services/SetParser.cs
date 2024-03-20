@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.RightsManagement;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab01_Discrete_Math.Services
 {
@@ -15,7 +11,7 @@ namespace Lab01_Discrete_Math.Services
                 return new();
 
             HashSet<int> result = new();
-            foreach(var token in s.Split(','))
+            foreach (var token in s.Split(','))
             {
                 result.Add(int.Parse(token));
             }
@@ -83,7 +79,7 @@ namespace Lab01_Discrete_Math.Services
             return result;
         }
 
-        public string SetToString<T>(HashSet<T> set) 
+        public string SetToString<T>(HashSet<T> set)
         {
             return string.Join(", ", set);
         }
