@@ -9,7 +9,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Anm.png" />
+    <None Remove="Assets\AnmR.png" />
+    <None Remove="Assets\Cnm.png" />
+    <None Remove="Assets\CnmR.png" />
+    <None Remove="Assets\P.png" />
+    <None Remove="Assets\Ppieces.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="WPF-UI" Version="3.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Anm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\AnmR.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Cnm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\CnmR.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\P.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Ppieces.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

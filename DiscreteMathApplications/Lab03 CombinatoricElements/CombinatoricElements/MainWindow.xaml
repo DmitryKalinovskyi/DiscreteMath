@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CombinatoricElements"
-        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 xmlns:views="clr-namespace:CombinatoricElements.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+                 WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -14,7 +16,61 @@
         </Grid.RowDefinitions>
 
         <ui:TitleBar Title="MainWindow">
-            
         </ui:TitleBar>
+
+        <ui:NavigationView x:Name="RootNavigation" Grid.Row="1">
+            <ui:NavigationView.Resources>
+                <Style TargetType="ui:ImageIcon" x:Key="NavigationIcon">
+                    <Setter Property="Margin" Value="6 6"/>
+                </Style>
+            </ui:NavigationView.Resources>
+            <ui:NavigationView.Header>
+                <ui:BreadcrumbBar
+      Margin="42,32,0,0"
+      FontSize="28"
+      FontWeight="DemiBold" />
+            </ui:NavigationView.Header>
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem Content="Permutation" TargetPageType="{x:Type views:PermutationPage}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:ImageIcon Source="./Assets/Anm.png"
+                                      Style="{StaticResource NavigationIcon}"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Permutation with repetition" TargetPageType="{x:Type views:CombinationPage}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:ImageIcon Source="./Assets/AnmR.png"
+                                      Style="{StaticResource NavigationIcon}"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Combination" TargetPageType="{x:Type views:CombinationPage}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:ImageIcon Source="./Assets/Cnm.png"
+                                      Style="{StaticResource NavigationIcon}"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Combination with repetition" TargetPageType="{x:Type views:CombinationPage}">
+                    <ui:NavigationViewItem.Icon>
+                            <ui:ImageIcon Source="./Assets/CnmR.png"
+                                          Style="{StaticResource NavigationIcon}">
+                                
+                            </ui:ImageIcon>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Permutation" TargetPageType="{x:Type views:CombinationPage}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:ImageIcon Source="./Assets/P.png"
+                                      Style="{StaticResource NavigationIcon}"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.MenuItems>
+            <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Content="Settings" TargetPageType="{x:Type views:PermutationPage}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Settings24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.FooterMenuItems>
+        </ui:NavigationView>
     </Grid>
 </ui:FluentWindow>
