@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombinatoricElements", "CombinatoricElements\CombinatoricElements.csproj", "{69A2B476-6800-4200-B00F-9564C818B3CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombinatoricElements.Test", "CombinatoricElements.Test\CombinatoricElements.Test.csproj", "{BE9CFD24-1C88-46B5-A186-757C37426DEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{69A2B476-6800-4200-B00F-9564C818B3CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69A2B476-6800-4200-B00F-9564C818B3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69A2B476-6800-4200-B00F-9564C818B3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69A2B476-6800-4200-B00F-9564C818B3CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE9CFD24-1C88-46B5-A186-757C37426DEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE9CFD24-1C88-46B5-A186-757C37426DEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE9CFD24-1C88-46B5-A186-757C37426DEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE9CFD24-1C88-46B5-A186-757C37426DEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD1056D5-DDE8-4096-97F3-4584B8F339B4}
+	EndGlobalSection
+EndGlobal
