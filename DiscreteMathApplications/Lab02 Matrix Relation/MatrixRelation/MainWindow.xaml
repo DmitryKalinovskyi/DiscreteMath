@@ -14,6 +14,7 @@
     </ui:FluentWindow.DataContext>
     <ui:FluentWindow.Resources>
         <converters:MatrixToLatexConverter x:Key="MatrixToLatexConverter"/>
+        <converters:RelationMatrixConverter x:Key="RelationMatrixConverter"/>
     </ui:FluentWindow.Resources>
     
     <Grid>
@@ -46,7 +47,7 @@
             </StackPanel>
             <StackPanel Margin="0 30 0 0">
                 <controls:FormulaControl
-    Formula="{Binding RelationMatrix.Value, Converter={StaticResource MatrixToLatexConverter}, UpdateSourceTrigger=PropertyChanged}"
+    Formula="{Binding RelationMatrix.Value, Converter={StaticResource RelationMatrixConverter}, UpdateSourceTrigger=PropertyChanged}"
     />
                 <!--<ui:TextBlock Text="{Binding RelationMatrix.Value, Converter={StaticResource MatrixToLatexConverter}, UpdateSourceTrigger=PropertyChanged}"/>-->
 

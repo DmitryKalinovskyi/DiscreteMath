@@ -11,7 +11,7 @@ namespace MatrixRelation.ViewModels
     public class MainWindowViewModel
     {
         //public BindableProperty<List<Dictionary<string, bool>>> RelationMatrix { get; set; }
-        public BindableProperty<bool[,]> RelationMatrix { get; set; }
+        public BindableProperty<long[,]> RelationMatrix { get; set; }
 
         public BindableProperty<string> SetA { get; set; }
 
@@ -27,7 +27,7 @@ namespace MatrixRelation.ViewModels
         {
             _matrixRelationServcie = new MatrixRelationService<long>(MatrixRelationCondition);
 
-            RelationMatrix = new BindableValue<bool[,]>();
+            RelationMatrix = new BindableValue<long[,]>();
             //RelationMatrix = new BindableValue<List<Dictionary<string, bool>>>();
             SetA = new BindableValue<string>();
             SetB = new BindableValue<string>();
@@ -51,7 +51,29 @@ namespace MatrixRelation.ViewModels
                 long[] setA = [.. _setParser.ParseSetConcrete<long>(SetA.Value ?? "")];
                 long[] setB = [.. _setParser.ParseSetConcrete<long>(SetB.Value ?? "")];
 
-                RelationMatrix.Value = _matrixRelationServcie.GetRelationMatrix(setA, setB);
+                var relationMatrix = _matrixRelationServcie.GetRelationMatrix(setA, setB);
+
+                // build rows and columns
+                var resultingMatrix = new long[relationMatrix.GetLength(0) + 1, relationMatrix.GetLength(1) + 1];
+                for(int i = 0; i < setA.Length; i++)
+                {
+                    resultingMatrix[i+1, 0] = setA[i];
+                }
+
+                for(int i = 0; i < setB.Length; i++)
+                {
+                    resultingMatrix[0, i+1] = setB[i];
+                }
+
+                for(int i = 0; i <  relationMatrix.GetLength(0); i++)
+                {
+                    for(int j = 0; j < relationMatrix.GetLength(1); j++)
+                    {
+                        resultingMatrix[i + 1, j + 1] = relationMatrix[i, j] ? 1: 0;
+                    }
+                }
+
+                RelationMatrix.Value = resultingMatrix;
             }
             catch { }
         }
