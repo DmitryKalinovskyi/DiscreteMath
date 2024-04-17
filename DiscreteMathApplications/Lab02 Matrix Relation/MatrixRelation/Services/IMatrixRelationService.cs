@@ -15,6 +15,6 @@ namespace MatrixRelation.Services
 
         public bool[,] GetRelationMatrix(IList<T> A, IList<T> B);
 
-        public bool[,] GetRelationMatrix(IEnumerable<T> A, IEnumerable<T> A);
+        public bool[,] GetRelationMatrix(IEnumerable<T> A, IEnumerable<T> B);
     }
 }

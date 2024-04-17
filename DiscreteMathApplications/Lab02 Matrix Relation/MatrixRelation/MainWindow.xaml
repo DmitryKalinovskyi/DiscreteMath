@@ -1,12 +1,60 @@
-﻿<Window x:Class="MatrixRelation.MainWindow"
+﻿<ui:FluentWindow x:Class="MatrixRelation.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MatrixRelation"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+                 xmlns:vm="clr-namespace:MatrixRelation.ViewModels"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
+                 xmlns:converters="clr-namespace:MatrixRelation.Converters"
+        mc:Ignorable="d" Height="450" Width="800">
+    <ui:FluentWindow.DataContext>
+        <vm:MainWindowViewModel/>
+    </ui:FluentWindow.DataContext>
+    <ui:FluentWindow.Resources>
+        <converters:MatrixToLatexConverter x:Key="MatrixToLatexConverter"/>
+    </ui:FluentWindow.Resources>
+    
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <ui:TitleBar Title="Matrix Relation Builder">
+        </ui:TitleBar>
 
+        <StackPanel Grid.Row="1"
+                    Margin="70 70">
+            <ui:TextBlock>Enter set A, and B</ui:TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <!--Set a input.-->
+
+                <ui:TextBlock VerticalAlignment="Center">A = {</ui:TextBlock>
+                <ui:TextBox Text="{Binding SetA.Value}"
+                            VerticalAlignment="Center">
+                </ui:TextBox>
+                <ui:TextBlock VerticalAlignment="Center">}</ui:TextBlock>
+
+                <!--Set b input.-->
+
+                <ui:TextBlock VerticalAlignment="Center">, B = {</ui:TextBlock>
+                <ui:TextBox Text="{Binding SetB.Value}"
+            VerticalAlignment="Center">
+                </ui:TextBox>
+                <ui:TextBlock VerticalAlignment="Center">}</ui:TextBlock>
+            </StackPanel>
+            <StackPanel Margin="0 30 0 0">
+                <controls:FormulaControl
+    Formula="{Binding RelationMatrix.Value, Converter={StaticResource MatrixToLatexConverter}, UpdateSourceTrigger=PropertyChanged}"
+    />
+                <!--<ui:TextBlock Text="{Binding RelationMatrix.Value, Converter={StaticResource MatrixToLatexConverter}, UpdateSourceTrigger=PropertyChanged}"/>-->
+
+            </StackPanel>
+            <ui:Button Command="{Binding UpdateRelationMatrixCommand}"
+                       Margin="0 10 0 0">
+                Update
+            </ui:Button>
+        </StackPanel>
     </Grid>
-</Window>
+</ui:FluentWindow>

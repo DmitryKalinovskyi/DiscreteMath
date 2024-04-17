@@ -8,34 +8,25 @@ using System.Threading.Tasks;
 
 namespace MatrixRelation.Core
 {
-    public class BindableProperty<T> : INotifyPropertyChanged
+    public abstract class BindableProperty<T> : INotifyPropertyChanged
     {
-        private T? _value;
-        public T? Value
-        {
-            get
-            {
-                return _value;
-            }
-            set
-            {
-                _value = value;
-                OnPropertyChanged(nameof(Value));
-            }
-        }
+        public abstract T? Value { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         // Create the OnPropertyChanged method to raise the event
         // The calling member's name will be used as the parameter.
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        protected void OnPropertyChanged([CallerMemberName] string? name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public BindableProperty()
+        public BindableProperty(params BindableProperty<dynamic>[] dependendProperties)
         {
-            _value = default(T);
+            foreach(var bindableProp in dependendProperties)
+            {
+                bindableProp.PropertyChanged += (sender, args) => OnPropertyChanged("Value");
+            }
         }
 
         public BindableProperty(T? value)
@@ -44,7 +35,5 @@ namespace MatrixRelation.Core
         }
 
         public static implicit operator T?(BindableProperty<T> property) => property.Value;
-        public static explicit operator BindableProperty<T>(T value) => new BindableProperty<T>(value);
     }
-}
 }

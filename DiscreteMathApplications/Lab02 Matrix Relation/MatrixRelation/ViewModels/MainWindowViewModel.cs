@@ -10,11 +10,15 @@ namespace MatrixRelation.ViewModels
 {
     public class MainWindowViewModel
     {
+        //public BindableProperty<List<Dictionary<string, bool>>> RelationMatrix { get; set; }
         public BindableProperty<bool[,]> RelationMatrix { get; set; }
 
         public BindableProperty<string> SetA { get; set; }
 
         public BindableProperty<string> SetB { get; set; }
+
+        //public BindableProperty<long[]> SetAReal { get; set; }
+        //public BindableProperty<long[]> SetBReal { get; set; }
 
         private IMatrixRelationService<long> _matrixRelationServcie;
         private SetParser _setParser;
@@ -22,10 +26,14 @@ namespace MatrixRelation.ViewModels
         public MainWindowViewModel()
         {
             _matrixRelationServcie = new MatrixRelationService<long>(MatrixRelationCondition);
-            
-            RelationMatrix = new();
-            SetA = new();
-            SetB = new();
+
+            RelationMatrix = new BindableValue<bool[,]>();
+            //RelationMatrix = new BindableValue<List<Dictionary<string, bool>>>();
+            SetA = new BindableValue<string>();
+            SetB = new BindableValue<string>();
+
+            //SetAReal = new BindableValue<long[]>();
+            //SetAReal = new BindableValue<long[]>();
             _setParser = new SetParser();
         }
 
@@ -36,11 +44,18 @@ namespace MatrixRelation.ViewModels
 
         public void UpdateRelationMatrix()
         {
-            // get list from set a, get list from set b
-            var setA = _setParser.ParseSetConcrete<long>(SetA.Value ?? "");
-            var setB = _setParser.ParseSetConcrete<long>(SetB.Value ?? "");
+            try
+            {
 
-            RelationMatrix.Value = _matrixRelationServcie.GetRelationMatrix(setA, setB);
+                // get list from set a, get list from set b
+                long[] setA = [.. _setParser.ParseSetConcrete<long>(SetA.Value ?? "")];
+                long[] setB = [.. _setParser.ParseSetConcrete<long>(SetB.Value ?? "")];
+
+                RelationMatrix.Value = _matrixRelationServcie.GetRelationMatrix(setA, setB);
+            }
+            catch { }
         }
+
+        public RelayCommand UpdateRelationMatrixCommand => new RelayCommand(null, (obj) => UpdateRelationMatrix());
     }
 }
