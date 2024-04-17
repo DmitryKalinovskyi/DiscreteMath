@@ -37,7 +37,7 @@
                                       Style="{StaticResource NavigationIcon}"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="Permutation with repetition" TargetPageType="{x:Type views:CombinationPage}">
+                <ui:NavigationViewItem Content="Permutation with repetition" TargetPageType="{x:Type views:PermutationRepPage}">
                     <ui:NavigationViewItem.Icon>
                         <ui:ImageIcon Source="./Assets/AnmR.png"
                                       Style="{StaticResource NavigationIcon}"/>
@@ -49,7 +49,7 @@
                                       Style="{StaticResource NavigationIcon}"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="Combination with repetition" TargetPageType="{x:Type views:CombinationPage}">
+                <ui:NavigationViewItem Content="Combination with repetition" TargetPageType="{x:Type views:CombinationRepPage}">
                     <ui:NavigationViewItem.Icon>
                             <ui:ImageIcon Source="./Assets/CnmR.png"
                                           Style="{StaticResource NavigationIcon}">
@@ -57,7 +57,7 @@
                             </ui:ImageIcon>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="Permutation" TargetPageType="{x:Type views:CombinationPage}">
+                <ui:NavigationViewItem Content="Permutation" TargetPageType="{x:Type views:PermutationPPage}">
                     <ui:NavigationViewItem.Icon>
                         <ui:ImageIcon Source="./Assets/P.png"
                                       Style="{StaticResource NavigationIcon}"/>

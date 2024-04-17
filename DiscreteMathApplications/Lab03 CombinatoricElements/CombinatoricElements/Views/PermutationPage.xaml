@@ -5,46 +5,61 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CombinatoricElements.Views"
       mc:Ignorable="d"
+      xmlns:vm ="clr-namespace:CombinatoricElements.ViewModels"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PermutationPage">
+    <Page.DataContext>
+        <vm:PermutationPageViewModel/>
+    </Page.DataContext>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition ></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid Margin="20 20">
-            <StackPanel VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Center"
+                        >
+            <StackPanel.Resources>
+            </StackPanel.Resources>
                 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <ui:TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                            Margin="0 0 0 30">
+                        <ui:TextBlock VerticalAlignment="Center" FontSize="40" Foreground="White">
                         n =
                     </ui:TextBlock>
-                    <ui:TextBox></ui:TextBox>
+                    <ui:TextBox Name="nTextBox" 
+                                FontSize="40"
+                                Text="{Binding N.Value}"/>
                     <ui:TextBlock VerticalAlignment="Center" 
-              FontSize="20"
+              FontSize="40"
               Foreground="White">
                         , m =
                     </ui:TextBlock>
-                    <ui:TextBox></ui:TextBox>
+                    <ui:TextBox Name="mTextBox" 
+                                FontSize="40"
+                                Text="{Binding M.Value}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <ui:ImageIcon Source="/Assets/Anm.png"
-                                  Width="35"
-                                  Height="23"/>
+                                  Width="76"
+                                  Height="50"/>
                     <ui:TextBlock VerticalAlignment="Center" 
-                                  FontSize="20"
+                                  FontSize="40"
                                   Foreground="White">
                         =
                     </ui:TextBlock>
                     <ui:TextBlock VerticalAlignment="Center" 
-                                  FontSize="20"
+                                  FontSize="40"
                                   Foreground="White"
-                        >?</ui:TextBlock>
+                                  Text="{Binding CalculationResult.Value}"
+                        /> 
                 </StackPanel>
-                <ui:Button HorizontalAlignment="Center">Calculate</ui:Button>
+            <ui:Button HorizontalAlignment="Center" 
+                       Margin="10 10"
+                           Command="{Binding CalculatePermutationCommand}"
+                           >
+                <ui:TextBlock FontSize="40">
+                    Calculate
+                </ui:TextBlock>
+                
+            </ui:Button>
             </StackPanel>
-        </Grid>
     </Grid>
 </Page>
