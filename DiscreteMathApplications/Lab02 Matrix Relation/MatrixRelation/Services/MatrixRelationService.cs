@@ -25,15 +25,15 @@ namespace MatrixRelation.Services
             _relationCondition = relationCondition;
         }
 
-        public bool[,] GetRelationMatrix(IList<T> a, IList<T> b)
+        public bool[,] GetRelationMatrix(IList<T> A, IList<T> B)
         {
-            bool[,] result = new bool[a.Count(), b.Count()];
+            bool[,] result = new bool[A.Count(), B.Count()];
 
-            for (int i = 0; i < a.Count(); i++)
+            for (int i = 0; i < A.Count(); i++)
             {
-                for (int j = 0; j < b.Count(); j++)
+                for (int j = 0; j < B.Count(); j++)
                 {
-                    result[i, j] = IsHaveRelation(a[i], b[j]);
+                    result[i, j] = IsHaveRelation(A[i], B[j]);
                 }
             }
 
@@ -44,6 +44,26 @@ namespace MatrixRelation.Services
         {
             // by default all elements don't have relation
             return _relationCondition?.Invoke(a, b) ?? false;
+        }
+
+        public bool[,] GetRelationMatrix(IEnumerable<T> A, IEnumerable<T> B)
+        {
+            bool[,] result = new bool[A.Count(), B.Count()];
+
+            int i = 0;
+            foreach(T a in A)
+            {
+                int j = 0;
+                foreach(T b in B)
+                {
+                    result[i, j] = IsHaveRelation(a, b);
+                    j++;
+                }
+
+                i++;
+            }
+
+            return result;
         }
     }
 }
