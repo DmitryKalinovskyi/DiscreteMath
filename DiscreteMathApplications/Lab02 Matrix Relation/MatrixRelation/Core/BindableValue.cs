@@ -22,8 +22,9 @@ namespace MatrixRelation.Core
             }
         }
 
-        public BindableValue() : base()
+        public BindableValue(T value) : base()
         {
+            Value = value;
         }
 
 

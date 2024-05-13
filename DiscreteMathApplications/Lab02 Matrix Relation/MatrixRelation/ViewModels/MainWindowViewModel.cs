@@ -10,8 +10,10 @@ namespace MatrixRelation.ViewModels
 {
     public class MainWindowViewModel
     {
+        public BindableProperty<string> P { get; set; }
+
         //public BindableProperty<List<Dictionary<string, bool>>> RelationMatrix { get; set; }
-        public BindableProperty<long[,]> RelationMatrix { get; set; }
+        public BindableProperty<double[,]> RelationMatrix { get; set; }
 
         public BindableProperty<string> SetA { get; set; }
 
@@ -20,24 +22,25 @@ namespace MatrixRelation.ViewModels
         //public BindableProperty<long[]> SetAReal { get; set; }
         //public BindableProperty<long[]> SetBReal { get; set; }
 
-        private IMatrixRelationService<long> _matrixRelationServcie;
+        private IMatrixRelationService<double> _matrixRelationServcie;
         private SetParser _setParser;
 
         public MainWindowViewModel()
         {
-            _matrixRelationServcie = new MatrixRelationService<long>(MatrixRelationCondition);
+            _matrixRelationServcie = new MatrixRelationService<double>(MatrixRelationCondition);
 
-            RelationMatrix = new BindableValue<long[,]>();
+            RelationMatrix = new BindableValue<double[,]>();
             //RelationMatrix = new BindableValue<List<Dictionary<string, bool>>>();
             SetA = new BindableValue<string>();
             SetB = new BindableValue<string>();
+            P = new BindableValue<string>("\\rho=\\{(a, b) \\,|\\, (a\\in A) \\& (b\\in B) \\& (5a-b)\\vdots 3 \\}");
 
             //SetAReal = new BindableValue<long[]>();
             //SetAReal = new BindableValue<long[]>();
             _setParser = new SetParser();
         }
 
-        private bool MatrixRelationCondition(long a, long b)
+        private bool MatrixRelationCondition(double a, double b)
         {
             return (5 * a - b) % 3 == 0;
         }
@@ -48,13 +51,13 @@ namespace MatrixRelation.ViewModels
             {
 
                 // get list from set a, get list from set b
-                long[] setA = [.. _setParser.ParseSetConcrete<long>(SetA.Value ?? "")];
-                long[] setB = [.. _setParser.ParseSetConcrete<long>(SetB.Value ?? "")];
+                double[] setA = [.. _setParser.ParseSetDouble(SetA.Value ?? "")];
+                double[] setB = [.. _setParser.ParseSetDouble(SetB.Value ?? "")];
 
                 var relationMatrix = _matrixRelationServcie.GetRelationMatrix(setA, setB);
 
                 // build rows and columns
-                var resultingMatrix = new long[relationMatrix.GetLength(0) + 1, relationMatrix.GetLength(1) + 1];
+                var resultingMatrix = new double[relationMatrix.GetLength(0) + 1, relationMatrix.GetLength(1) + 1];
                 for(int i = 0; i < setA.Length; i++)
                 {
                     resultingMatrix[i+1, 0] = setA[i];

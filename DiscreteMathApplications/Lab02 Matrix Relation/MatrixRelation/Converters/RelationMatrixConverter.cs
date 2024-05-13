@@ -12,7 +12,7 @@ namespace MatrixRelation.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is long[,] matrix)
+            if (value is double[,] matrix)
             {
                 var contentBuilder = new StringBuilder();
 
@@ -21,10 +21,26 @@ namespace MatrixRelation.Converters
                     string row = "";
                     for (int j = 0; j < matrix.GetLength(1); j++)
                     {
-                        if (j != 0)
+                        if(j > 0)
                             row += "&";
 
-                        row += matrix[i, j];
+                        if (i == 0 && j == 0)
+                        {
+                            row += "a/b";
+                        }
+                        else
+                        if(j == 0)
+                        {
+                            row += $"a_{{{i}}}({matrix[i, j]})";
+                        }
+                        else if(i == 0)
+                        {
+                            row += $"b_{{{j}}}({matrix[i, j]})";
+                        }
+                        else
+                        {
+                            row += matrix[i, j];
+                        }
                     }
 
                     if (i != 0)
@@ -35,8 +51,8 @@ namespace MatrixRelation.Converters
                 }
 
                 var content = contentBuilder.ToString();
-
-                return $"R = \\matrix{{{content}}}";
+                var result = $"R = \\matrix{{{content}}}";
+                return result;
             }
 
             return @"R =\matrix{}";

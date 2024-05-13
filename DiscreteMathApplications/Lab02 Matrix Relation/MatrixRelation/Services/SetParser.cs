@@ -31,9 +31,10 @@ namespace MatrixRelation.Services
                 return new();
 
             HashSet<double> result = new();
-            foreach (var token in s.Split(','))
+            foreach (var rawToken in s.Split(','))
             {
-                result.Add(double.Parse(token));
+                //var token = rawToken.Replace('.', ',');
+                result.Add(double.Parse(rawToken));
             }
 
             return result;

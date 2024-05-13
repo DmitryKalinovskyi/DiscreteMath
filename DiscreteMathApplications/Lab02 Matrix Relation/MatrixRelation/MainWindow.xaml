@@ -27,6 +27,8 @@
 
         <StackPanel Grid.Row="1"
                     Margin="70 70">
+            <Image Source="Images/p.png" Width="300"/>
+
             <ui:TextBlock>Enter set A, and B</ui:TextBlock>
             <StackPanel Orientation="Horizontal">
                 <!--Set a input.-->
