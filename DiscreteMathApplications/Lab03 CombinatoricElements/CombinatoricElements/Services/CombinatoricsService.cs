@@ -85,8 +85,7 @@ namespace CombinatoricElements.Services
 
         private long Factorial(long a)
         {
-            // using matrix exponention we can achieve O(Log(a)) Time complexity.
-            // if you know how to do that please make pull request :)
+            // if you know how to speed up that function please make pull request :)
 
             long b = 1;
 
